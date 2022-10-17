@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}
+<title>Wishlist</title>
+{% endblock %}
+{% block content %}
+<!--banner-->
+<div class="banner-top">
+	<div class="container">
+		<h2 class="animated wow fadeInLeft" data-wow-delay=".5s">Wishlist</h2>
+		<h3 class="animated wow fadeInRight" data-wow-delay=".5s"><a href="{% url 'home' %}">Home</a><label>/</label>Wishlist</h3>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+<!-- -->
+<br><br>
+{% if wishdata %}
+<div>
+	<div class="container">
+<!--		<div class="col-md-7 col-md2 animated wow fadeInLeft" data-wow-delay=".1s">-->
+		{% for data in wishdata %}
+		<div class="col-sm-4 item-grid simpleCart_shelfItem">
+									<div class="deletewish" align="right">
+										<a href="{% url 'deletefromwish' data.id %}"><img src="{% static 'images/delete.png' %}"></a>
+									</div>
+							<div class="grid-pro">
+								<div  class=" grid-product " >
+
+									<figure>
+										{% if data.pid.product_pic %}
+										<a href="{% url 'productdetails' data.id %}">
+											<div class="grid-img">
+												<img  src="{{ data.pid.product_pic2.url }}" class="img-responsive" alt="">
+											</div>
+											<div class="grid-img">
+												<img  src="{{ data.pid.product_pic.url }}" class="img-responsive"  alt="">
+											</div>
+										</a>
+										{% else %}
+										<a href="{% url 'productdetails' data.pid %}">
+											<div class="grid-img">
+												<img  src="{% static 'images/default.jpg' %}" class="img-responsive" alt="">
+											</div>
+											<div class="grid-img">
+												<img  src="{% static 'images/default.jpg' %}" class="img-responsive"  alt="">
+											</div>
+										</a>
+										{% endif %}
+									</figure>
+								</div>
+								<div class="women">
+<!--									<a href="#"><img src="{% static 'images/ll.png' %}" alt=""></a>-->
+									<h6><a href="{% url 'productdetails' data.id %}">{{ data.pid.product_name }}</a></h6>
+									<p ><em class="item_price">Rs.{{ data.pid.price }}/-</em></p>
+<!--									<form action="{% url 'addshoppingcart' %}" method="post">-->
+<!--																{% csrf_token %}-->
+<!--																<fieldset>-->
+
+
+<!--																	<input type="hidden" name="item_id" value="{{ data.pid }}">-->
+<!--																	<input type="hidden" name="amount" value="{{ data.pid.price }}">-->
+<!--																	<input type="hidden" name="qty" value="1">-->
+<!--																	<input type="hidden" name="size" value="M">-->
+<!--																	<input type="submit" name="submit" value="Add To Cart" class="but">-->
+																	{% if data.pid.qty|add:"0" > 0 %}
+																	<a href="{% url 'productdetails' data.pid.id %}" data-text="Add To Cart" class="but-hover1 item_add">Add To Cart</a>
+																	{% endif %}
+
+
+																</fieldset>
+															</form>
+								</div>
+							</div>
+
+						</div>
+			{% endfor %}
+
+<!--		</div>-->
+	</div>
+</div>
+
+<div class="clearfix"></div>
+
+{% else %}
+<div>
+	<div class="container">
+		<br>
+		<h3>No Products Available in Wishlist. Your Wishlist is empty!!</h3>
+		<br>
+	</div>
+</div>
+
+
+{% endif %}
+
+<br><br>
+
+{% endblock %}

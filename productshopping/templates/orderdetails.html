@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Order Details</title>
+{% endblock %}
+
+{% block content %}
+
+<!--banner-->
+<div class="banner-top">
+	<div class="container">
+		<h2 class="animated wow fadeInLeft" data-wow-delay=".5s">Order Details</h2>
+		<h3 class="animated wow fadeInRight" data-wow-delay=".5s"><a href="{% url 'home' %}">Home</a><label>/</label>Order Details</h3>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+
+
+<!--Cart Table-->
+<div class="cart">
+  <div class="container">
+    <div class="row">
+        {% if orderdetailsdata %}
+      <div class="col-12"><br><br><br>
+        <table width="100%">
+
+          <tr>
+            <th></th>
+            <th>Order No.</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Size</th>
+            <th>Total Cost</th>
+            <th>Product Name</th>
+          </tr>
+
+          {% for data in orderdetailsdata %}
+                <tr>
+                  <td><img src="{{ data.product_id.product_pic.url }}" width="100px"></td>
+                  <td>{{ data.orderno }}</td>
+                    <td>{{ data.price }}</td>
+                    <td>{{ data.qty }}</td>
+                    <td>{{ data.size }}</td>
+                    <td>{{ data.total_cost }}</td>
+                    <td>{{ data.product_id }}</td>
+                </tr>
+          {% endfor %}
+
+        </table><br><br><br>
+
+            {% else %}
+            <br><br>
+          <h4>No order done till now. Place your order now.</h4><br><br>
+          {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

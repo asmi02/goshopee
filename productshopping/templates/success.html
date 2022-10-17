@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}
+<title>Place Order</title>
+{% endblock %}
+{% block content %}
+<!--banner-->
+<div class="banner-top">
+	<div class="container">
+		<h2 class="animated wow fadeInLeft" data-wow-delay=".5s">Place Order</h2>
+		<h3 class="animated wow fadeInRight" data-wow-delay=".5s"><a href="{% url 'home' %}">Home</a><label>/</label>Place Order</h3>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+<!-- -->
+
+<div>
+    <div class="container">
+        <div class="col-12">
+            <br><br><h3 class="align-center">Order Placed Successfully. Your Order Number is {{ orderno }}</h3><br><br>
+            {% if error %}
+            <h3>{{ error }}</h3>
+            {% else %}
+            <h3>We have sent the Confirmation mail to your Mail id.</h3>
+            {% endif %}
+        </div><br><br>
+    </div>
+</div>
+
+{% endblock %}

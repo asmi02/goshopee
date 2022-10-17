@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}
+<title>Profile Details</title>
+{% endblock %}
+{% block content %}
+
+	<div class="container">
+
+        <h1 class="head">Profile</h1><br><br>
+        <div class="row head">
+            <div class="col-md-8">
+                <form id="form1" method="post" enctype="multipart/form-data" >
+            {% csrf_token %}
+                        {{ form.as_p }}
+            <input type="submit" name="submit" value="Complete Profile"><br><br>
+        </form>
+            </div>
+            <div class="col-md-4">
+                <img src="{% static 'images/profilepg.png' %}" width="250px">
+            </div>
+        </div>
+
+
+        {% if messages %}
+        <ul class="messages">
+
+            <li>{{ messages }}</li>
+
+        </ul>
+        {% endif %}
+    </div>
+
+
+<style type="text/css">
+    #form1 input
+    {
+        width:200px;
+    }
+
+</style>
+{% endblock %}

@@ -1,0 +1,292 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Goshopee</title>
+{% endblock %}
+
+{% block content %}
+<!-- banner -->
+	<div class="banner">
+
+	<div class="banner-right pb-5">
+
+<!--		loop starts			-->
+
+
+					<ul id="flexiselDemo2">
+						{% for data in pdata %}
+						<li><div class="banner-grid">
+
+						<h2>Featured Products</h2>
+						<div class="wome">
+							<a href="{% url 'productdetails' data.id %}" ><img class="img-responsive" src="{{ data.product_pic.url }}" alt="" />
+							</a>
+							<div class="women simpleCart_shelfItem">
+<!--								<a href="#"><img src="{% static 'images/ll.png' %}" alt=""></a>-->
+								<h6 ><a href="{% url 'productdetails' data.id %}">{{ data.product_name }}</a></h6>
+								<p class="ba-price"><em class="item_price">Rs. {{ data.price }}/-</em></p>
+								<form action="{% url 'addshoppingcart' %}" method="post">
+																{% csrf_token %}
+																<fieldset>
+
+
+																	<input type="hidden" name="item_id" value="{{ data.id }}">
+																	<input type="hidden" name="amount" value="{{ data.price }}">
+																	<input type="hidden" name="qty" value="1">
+																	<input type="hidden" name="size" value="{{ size }}">
+<!--																	<input type="submit" name="submit" value="Add To Cart" class="but">-->
+																	{% if data.qty|add:"0" > 0 %}
+																		<input type="submit" name="submit" value="Add To Cart" class="but">
+																	{% endif %}
+
+
+																</fieldset>
+								</form>
+
+								<form action="{% url 'addtowishlist' %}" method="post">
+									{% csrf_token %}
+									<fieldset>
+										<input type="hidden" name="item_id" value="{{ data.id }}">
+										<input type="submit" name="submit" value="Add To Wishlist" class="but">
+									</fieldset>
+								</form>
+							</div>
+						</div>
+						</div></li>
+						{% endfor %}
+					</ul>
+
+					<script type="text/javascript">
+						$(window).load(function() {
+							$("#flexiselDemo2").flexisel({
+								visibleItems: 1,
+								animationSpeed: 1000,
+								autoPlay: true,
+								autoPlaySpeed: 5000,
+								pauseOnHover: true,
+								enableResponsiveBreakpoints: true,
+								responsiveBreakpoints: {
+									portrait: {
+										changePoint:480,
+										visibleItems: 1
+									},
+									landscape: {
+										changePoint:640,
+										visibleItems: 1
+									},
+									tablet: {
+										changePoint:768,
+										visibleItems: 1
+									}
+								}
+							});
+
+						});
+					</script>
+		<script type="text/javascript" src="{% static 'js/jquery.flexisel.js' %}"></script>
+
+
+					</div>
+
+
+
+
+				</div>
+
+	</div>
+
+
+				<div class="content-top">
+					<div class="col-md-5 col-md1 animated wow fadeInLeft" data-wow-delay=".1s">
+						<div class="col-3">
+							<img src="{% static 'images/pi1.jpg' %}" class="img-responsive " alt="">
+							<div class="col-pic">
+								<h5> Women's Wear</h5>
+<!--								<p>At vero eos et accusamus et</p>-->
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-md-7 col-md2 animated wow fadeInRight" data-wow-delay=".1s">
+
+								<!--for loop started-->
+						{% for womendata in womenpdata %}
+						<div class="col-sm-4 item-grid simpleCart_shelfItem">
+							<div class="grid-pro">
+								<div  class=" grid-product " >
+									<figure>
+										<a href="{% url 'productdetails' womendata.id %}">
+<!--										<a href="#">-->
+											<div class="grid-img">
+												<img  src="{{ womendata.product_pic2.url }}" class="img-responsive" alt="">
+											</div>
+											<div class="grid-img">
+												<img  src="{{ womendata.product_pic.url }}" class="img-responsive"  alt="">
+											</div>
+										</a>
+									</figure>
+								</div>
+								<div class="women">
+<!--									<a href="#"><img src="{% static 'images/ll.png' %}" alt=""></a>-->
+									<h6><a href="{% url 'productdetails' womendata.id %}">{{ womendata.product_name }}</a></h6>
+<!--									<h6><a href="#">{{ womendata.product_name }}</a></h6>-->
+									<p ><em class="item_price">Rs.{{ womendata.price }}/-</em></p>
+									<form action="{% url 'addshoppingcart' %}" method="post">
+																{% csrf_token %}
+																<fieldset>
+
+
+																	<input type="hidden" name="item_id" value="{{ womendata.id }}">
+																	<input type="hidden" name="amount" value="{{ womendata.price }}">
+																	<input type="hidden" name="qty" value="1">
+																	<input type="hidden" name="size" value="{{ size }}">
+<!--																	<input type="submit" name="submit" value="Add To Cart" class="but">-->
+																	{% if womendata.qty|add:"0" > 0 %}
+																		<input type="submit" name="submit" value="Add To Cart" class="but">
+																	{% endif %}
+
+
+																</fieldset>
+															</form>
+									<form action="{% url 'addtowishlist' %}" method="post">
+										{% csrf_token %}
+									<fieldset>
+										<input type="hidden" name="item_id" value="{{ womendata.id }}">
+										<input type="submit" name="submit" value="Add To Wishlist" class="but">
+									</fieldset>
+									</form>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+
+
+
+
+					<div class="clearfix"></div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<!----->
+				<!---->
+				<div class="content-top">
+
+					<div class="col-md-7 col-md2 animated wow fadeInLeft" data-wow-delay=".1s">
+
+
+						<!--for loop started-->
+						{% for mendata in menpdata %}
+						<div class="col-sm-4 item-grid simpleCart_shelfItem">
+							<div class="grid-pro">
+								<div  class=" grid-product " >
+									<figure>
+										<a href="#">
+											<div class="grid-img">
+												<img  src="{{ mendata.product_pic2.url }}" class="img-responsive" alt="">
+											</div>
+											<div class="grid-img">
+												<img  src="{{ mendata.product_pic.url }}" class="img-responsive"  alt="">
+											</div>
+										</a>
+									</figure>
+								</div>
+								<div class="women">
+<!--									<a href="#"><img src="{% static 'images/ll.png' %}" alt=""></a>-->
+									<h6><a href="#">{{ mendata.product_name }}</a></h6>
+									<p ><em class="item_price">Rs.{{ mendata.price }}/-</em></p>
+									<form action="{% url 'addshoppingcart' %}" method="post">
+																{% csrf_token %}
+																<fieldset>
+
+
+																	<input type="hidden" name="item_id" value="{{ mendata.id }}">
+																	<input type="hidden" name="amount" value="{{ mendata.price }}">
+																	<input type="hidden" name="qty" value="1">
+
+																	<input type="hidden" name="size" value="{{ size }}">
+<!--																	<input type="submit" name="submit" value="Add To Cart" class="but">-->
+																	{% if mendata.qty|add:"0" > 0 %}
+																		<input type="submit" name="submit" value="Add To Cart" class="but">
+																	{% endif %}
+
+
+																</fieldset>
+															</form>
+									<form action="{% url 'addtowishlist' %}" method="post">
+										{% csrf_token %}
+									<fieldset>
+										<input type="hidden" name="item_id" value="{{ mendata.id }}">
+										<input type="submit" name="submit" value="Add To Wishlist" class="but">
+									</fieldset>
+									</form>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+
+
+					<div class="clearfix"></div>
+					</div>
+					<div class="col-md-5 col-md1 animated wow fadeInRight" data-wow-delay=".1s">
+						<div class="col-3">
+							<img src="{% static 'images/pi2.jpg' %}" class="img-responsive " alt="">
+							<div class="col-pic">
+								<h5> Men's Wear</h5>
+<!--								<p>At vero eos et accusamus et</p>-->
+							</div>
+						</div>
+
+					</div>
+					<div class="clearfix"></div>
+				</div>
+
+
+<!-- //banner -->
+<!--content-->
+<!--		<div class="content">-->
+<!--		<div class="content-head">-->
+
+<!--					<div class="col-md-6 col-m1 animated wow fadeInLeft py-5" data-wow-delay=".1s">-->
+<!--						<div class="col-1">-->
+<!--						<div class="col-md-6 col-2">-->
+<!--							<a href="single.html"><img src="{% static 'images/pi3.jpg' %}" class="img-responsive" alt="">-->
+<!--							</a></div>-->
+<!--							<div class="col-md-6 col-p">-->
+<!--								<h5>For All Collections</h5>-->
+<!--								<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis-->
+<!--								praesentium voluptatum deleniti atque</p>-->
+<!--								<a href="single.html" class="shop" data-hover="Shop Now">Shop Now</a>-->
+<!--							</div>-->
+<!--							<div class="clearfix"> </div>-->
+<!--						</div>-->
+<!--						<div class="col-1">-->
+<!--						<div class="col-md-6 col-p">-->
+<!--								<h5>For All Collections</h5>-->
+<!--								<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis-->
+<!--								praesentium voluptatum deleniti atque</p>-->
+<!--								<a href="single.html" class="shop" data-hover="Shop Now">Shop Now</a>-->
+<!--							</div>-->
+<!--						<div class="col-md-6 col-2">-->
+<!--							<a href="single.html"><img src="{% static 'images/pi.jpg' %}" class="img-responsive" alt="">-->
+<!--							</a></div>-->
+<!--							<div class="clearfix"> </div>-->
+<!--						</div>-->
+<!--					</div>-->
+
+<!--					<div class="col-md-12">-->
+<!--						<img src="{% static 'images/mens.jpg' %}" class="img-responsive" height="100px">-->
+<!--					</div>-->
+
+<!--					   <div class="clearfix"></div>-->
+<!--			</div>-->
+<!--					</div>-->
+
+			<!---->
+
+<br><br>
+
+
+
+{% endblock %}

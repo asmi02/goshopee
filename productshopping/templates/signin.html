@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}
+<title>Login</title>
+{% endblock %}
+{% block content %}
+
+<!--banner-->
+<div class="banner-top">
+	<div class="container">
+		<h2 class="animated wow fadeInLeft" data-wow-delay=".5s">SignIn</h2>
+		<h3 class="animated wow fadeInRight" data-wow-delay=".5s"><a href="{% url 'home' %}">Home</a><label>/</label>SignIn</h3>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+<!-- -->
+	<div class="banner-bootom-w3-agileits">
+	<div class="container">
+        <div class="input-group w3_w3layouts">
+        <br><br><h1>Login</h1><br><br>
+        <form id="form1" method="post">
+            {% csrf_token %}
+        {{ myform.as_p }}
+            <input type="hidden" name="next" value="{{ request.GET.next }}"/>
+            <input type="submit" name="submit" value="Sign in">
+        </form>
+            </div> <br><br>
+
+        {% if messages %}
+        <ul class="messages">
+
+            <li>{{ messages }}</li>
+
+        </ul>
+        {% endif %}
+    </div>
+    </div>
+
+<style type="text/css">
+    #form1 input
+    {
+        width:200px;
+    }
+
+</style>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Register</title>
+{% endblock %}
+
+{% block content %}
+
+<!-- //header --><!--banner-->
+<div class="banner-top">
+	<div class="container">
+		<h2 class="animated wow fadeInLeft" data-wow-delay=".5s">Sign Up</h2>
+		<h3 class="animated wow fadeInRight" data-wow-delay=".5s"><a href="{% url 'home' %}">Home</a><label>/</label>Register</h3>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+<!-- contact -->
+	<div class="login">
+		<div class="container">
+			<br><h1>Signup</h1><br><br>
+		<form method="post">
+			{% csrf_token %}
+		{{ form.as_p }}<br>
+<br><br>
+			<div class="col-md-6 login-do animated wow fadeInRight" data-wow-delay=".5s">
+				<label class="hvr-sweep-to-top login-sub">
+					<input type="submit" value="Signup"`name="submit">
+					</label>
+					<p>Already have an account</p>
+				<a href="{% url 'signin' %}" class="hvr-sweep-to-top">Login</a>
+			</div>
+			<div class="clearfix"> </div>
+			</form><br><br>
+
+			{% if messages %}
+        <ul class="messages">
+
+            <li>{{ messages }}</li>
+
+        </ul>
+        {% endif %}
+		</div>
+
+
+	</div>
+
+<style type="text/css">
+    #form1 input
+    {
+        width:200px;
+    }
+</style>
+
+{% endblock %}

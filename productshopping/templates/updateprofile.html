@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Update Profile</title>
+{% endblock %}
+
+{% block content %}
+
+    <div>
+      <div class="container">
+        <br><br><h1 class="head">Update Profile</h1><br><br>
+        <form method="post">
+          {% csrf_token %}
+        {{ form.as_p }}
+          <input type="submit" name="submit" value="Update Profile"><br><br><br>
+        </form>
+
+          {% if messages %}
+          <ul class="messages">
+              <li>{{ messages }}</li>
+          </ul>
+          {% endif %}
+      </div>
+    </div>
+
+{% endblock %}
