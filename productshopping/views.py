@@ -83,6 +83,7 @@ def deleteproductfromcart(request,id):
     cartobj.delete()
     return HttpResponseRedirect(reverse_lazy('shoppingcart'))
 
+@login_required()
 def addtowishlist(request):
     pid = int(request.POST.get("item_id"))
     # print(pid)
