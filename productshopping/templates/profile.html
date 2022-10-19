@@ -6,19 +6,29 @@
 {% endblock %}
 {% block content %}
 
+<div class="banner-top">
+	<div class="container">
+		<h2 class="animated wow fadeInLeft" data-wow-delay=".5s">Profile</h2>
+		<h3 class="animated wow fadeInRight" data-wow-delay=".5s"><a href="{% url 'home' %}">Home</a><label>/</label>Complete Profile</h3>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+
 	<div class="container">
 
-        <h1 class="head">Profile</h1><br><br>
+        <h1 class="head pro">Profile</h1><br><br>
         <div class="row head">
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <form id="form1" method="post" enctype="multipart/form-data" >
             {% csrf_token %}
+<!--                    <img src="{{User.Profile.profile_pic.url}}" height="100px" width="100px">-->
                         {{ form.as_p }}
+
             <input type="submit" name="submit" value="Complete Profile"><br><br>
         </form>
             </div>
-            <div class="col-md-4">
-                <img src="{% static 'images/profilepg.png' %}" width="250px">
+            <div class="col-md-6">
+                <img src="{% static 'images/profile.svg' %}" width="100%">
             </div>
         </div>
 
@@ -37,6 +47,25 @@
     #form1 input
     {
         width:200px;
+    }
+    .pro
+    {
+        color:#01CFCF;
+        padding-top:70px;
+    }
+    input[type="submit"]
+    {
+        background-color:#01CFCF;
+        padding: 15px;
+        margin-top:5%;
+        border:0px;
+        border-radius:5%;
+        transition:all 0.2s linear;
+        color:white;
+    }
+    input[type="submit"]:hover
+    {
+        background-color:#0be6e6;
     }
 
 </style>

@@ -15,10 +15,10 @@
 	</div>
 </div>
 <!-- -->
-	<div class="banner-bootom-w3-agileits">
+	<div class="banner-bootom-w3-agileits log">
 	<div class="container">
-        <div class="input-group w3_w3layouts">
-        <br><br><h1>Login</h1><br><br>
+        <div class=" col-md-6 col-12">
+        <h1 class="login">Login</h1><br><br>
         <form id="form1" method="post">
             {% csrf_token %}
         {{ myform.as_p }}
@@ -26,6 +26,11 @@
             <input type="submit" name="submit" value="Sign in">
         </form>
             </div> <br><br>
+
+        <div class="col-md-6 col-12">
+            <img src="{% static 'images/login.svg' %}" height="100%" width="100%">
+        </div>
+
 
         {% if messages %}
         <ul class="messages">
@@ -42,6 +47,34 @@
     {
         width:200px;
     }
+    .login
+    {
+        color:#01CFCF;
+        padding-top: 90px;
+    }
 
+    label
+    {
+        font-size:30px;
+    }
+    input[type="submit"]
+    {
+        background-color:#01CFCF;
+        padding: 15px;
+        margin-top:5%;
+        border:0px;
+        border-radius:5%;
+        transition:all 0.2s linear;
+        color:white;
+    }
+    input[type="submit"]:hover
+    {
+        background-color:#0be6e6;
+    }
+
+    .log
+    {
+        padding:80px 0px;
+    }
 </style>
 {% endblock %}

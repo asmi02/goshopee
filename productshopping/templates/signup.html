@@ -18,20 +18,27 @@
 <!-- contact -->
 	<div class="login">
 		<div class="container">
-			<br><h1>Signup</h1><br><br>
-		<form method="post">
+			<br><h1 class="sig">Signup</h1><br><br>
+			<div class="col-md-6 col-12">
+				<form method="post">
 			{% csrf_token %}
 		{{ form.as_p }}<br>
-<br><br>
-			<div class="col-md-6 login-do animated wow fadeInRight" data-wow-delay=".5s">
-				<label class="hvr-sweep-to-top login-sub">
-					<input type="submit" value="Signup"`name="submit">
+	<br><br>
+				<div class="col-md-6 login-do animated wow fadeInRight" data-wow-delay=".5s">
+					<label class="hvr-sweep-to-top login-sub bt">
+						<input type="submit" value="Signup"`name="submit">
 					</label>
-					<p>Already have an account</p>
-				<a href="{% url 'signin' %}" class="hvr-sweep-to-top">Login</a>
+						<p>Already have an account</p>
+					<a href="{% url 'signin' %}" class="hvr-sweep-to-top">Login</a>
+				</div>
+				<div class="clearfix"> </div>
+				</form><br><br>
 			</div>
-			<div class="clearfix"> </div>
-			</form><br><br>
+
+			<div class="col-md-6 col-12">
+				<img src="{% static 'images/signup.svg' %}" height="450px">
+			</div>
+
 
 			{% if messages %}
         <ul class="messages">
@@ -50,6 +57,19 @@
     {
         width:200px;
     }
+    .sig
+    {
+    	color:#01CFCF;
+    }
+    label
+    {
+    	font-size:30px;
+    }
+	label.bt
+	{
+		font-size:17px;
+	}
+
 </style>
 
 {% endblock %}

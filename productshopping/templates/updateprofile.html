@@ -9,7 +9,7 @@
 
     <div>
       <div class="container">
-        <br><br><h1 class="head">Update Profile</h1><br><br>
+        <br><br><h1 class="head pro">Update Profile</h1><br><br>
         <form method="post">
           {% csrf_token %}
         {{ form.as_p }}
@@ -23,5 +23,30 @@
           {% endif %}
       </div>
     </div>
+
+<style>
+    .pro
+    {
+        color:#01CFCF;
+    }
+    label
+    {
+        font-size:20px;
+    }
+    input[type="submit"]
+    {
+        background-color:#01CFCF;
+        padding: 15px;
+        margin-top:5%;
+        border:0px;
+        border-radius:5%;
+        transition:all 0.2s linear;
+        color:white;
+    }
+    input[type="submit"]:hover
+    {
+        background-color:#0be6e6;
+    }
+</style>
 
 {% endblock %}
